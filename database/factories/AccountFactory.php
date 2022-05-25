@@ -25,6 +25,7 @@ class AccountFactory extends Factory
             'age' => $this->faker->numberBetween(18,60),
             'sex' => $this->faker->randomElement(['male','female']),
             'CPF' => $this->faker->randomNumber(11),
+            'user_id' => '',
         ];
     }
 }

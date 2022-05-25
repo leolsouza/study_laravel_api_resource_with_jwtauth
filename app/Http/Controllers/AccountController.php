@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Account;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
-use App\Models\Account;
 
 class AccountController extends Controller
 {
@@ -15,7 +16,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return Account::with('user')->get();
+        $account = Account::with('user')->get();
+
+        return $account;
     }
 
     /**

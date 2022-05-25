@@ -13,7 +13,7 @@ class UpdateAccountRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=> ['string'],
+            'surname'=> ['string'],
+            'age'=>['numeric'],
+            'sex'=>['string'],
+            'CPF'=> ['digits:11'],
         ];
     }
 }
