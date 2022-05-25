@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\Address;
 use App\Http\Requests\StoreAddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
-use App\Models\Address;
 
 class AddressController extends Controller
 {
@@ -15,7 +16,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return Address::with('user')->get();
+        $address = Address::with('account')->get();
+
+        return $address;
     }
 
     /**
@@ -53,7 +56,7 @@ class AddressController extends Controller
     {
         $response = $address->update($request->validated());
 
-        return $response;
+        return response()->json(['sucess' => $request] + compact('address'), $response == true ? 200:500);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,5 +31,8 @@ class Account extends Model
             return $this->belongsTo(User::class);
         }
 
-
+        public function address()
+        {
+            return $this->hasOne(Address::class);
+        }
 }
