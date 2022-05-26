@@ -16,7 +16,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $account = Account::with('user')->get();
+        $account = Account::with('user','address')->get();
 
         return $account;
     }
