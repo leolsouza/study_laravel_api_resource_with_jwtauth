@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Account;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,7 +24,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make('senha'), // password
             'remember_token' => Str::random(10),
         ];
     }
@@ -39,5 +41,18 @@ class UserFactory extends Factory
                 'email_verified_at' => null,
             ];
         });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function(User $user){
+            //dd($user);
+            Account::factory()->create([
+                'name' => $user->name,
+                'user_id' => $user->id
+            ]);
+
+        });
+
     }
 }

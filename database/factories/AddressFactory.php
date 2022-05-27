@@ -17,13 +17,13 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            'street' => $this->faker->name(),
-            'number' => $this->faker->numberBetween(1,1000),
-            'district' => $this->faker->name(),
-            'city' => $this->faker->name(),
-            'state' => $this->faker->name(),
-            'country' => $this->faker->name(),
-            'zip_code' => $this->faker->randomNumber(8),
+            'street' => $this->faker->streetname(),
+            'number' => $this->faker->buildingNumber(),
+            'district' => $this->faker->secondaryAddress(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->state(),
+            'country' => $this->faker->country(),
+            'zip_code' => $this->faker->numerify('#####-###'),
             'account_id' => ''
 
         ];

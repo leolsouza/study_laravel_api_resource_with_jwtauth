@@ -16,7 +16,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $address = Address::with('account')->get();
+        $address = Address::with('account.user')->get();
 
         return $address;
     }
@@ -56,7 +56,7 @@ class AddressController extends Controller
     {
         $response = $address->update($request->validated());
 
-        return response()->json(['sucess' => $request] + compact('address'), $response == true ? 200:500);
+        return $address;
     }
 
     /**

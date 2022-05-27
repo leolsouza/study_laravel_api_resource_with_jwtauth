@@ -27,11 +27,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+        $user = User::create($request->validated());
 
         return $user;
     }
@@ -44,7 +40,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+
+        return $user->load('account.address');
     }
 
     /**
@@ -58,7 +55,7 @@ class UserController extends Controller
     {
         $response = $user->update($request->validated());
 
-        return response()->json(['sucess' => $response]+ compact('user'), $response = true ? 200:500);
+        return $user;
     }
 
     /**

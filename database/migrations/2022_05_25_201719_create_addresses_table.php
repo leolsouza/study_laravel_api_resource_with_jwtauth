@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('country');
-            $table->integer('zip_code');
+            $table->string('zip_code');
             $table->foreignId('account_id');
             $table->timestamps();
         });

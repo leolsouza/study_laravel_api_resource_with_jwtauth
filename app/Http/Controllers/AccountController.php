@@ -16,9 +16,8 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $account = Account::with('user','address')->get();
-
-        return $account;
+        //$account = Account::with('user','address')->get();
+        return Account::all()->load('user','address');
     }
 
     /**
@@ -56,7 +55,7 @@ class AccountController extends Controller
     {
         $response = $account->update($request->validated());
 
-        return response()->json(['sucess' => $response] + compact('account'), $response = true ? 200:500);
+        return $account;
     }
 
     /**

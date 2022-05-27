@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('surname');
             $table->integer('age');
             $table->string('sex');
-            $table->float('CPF');
+            $table->string('CPF');
             $table->foreignId('user_id');
             $table->timestamps();
         });
